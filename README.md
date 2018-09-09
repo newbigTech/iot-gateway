@@ -1,4 +1,4 @@
-## IM Based on SofaRpc And Sharding Sphere
+## IM Based on SofaRpc And ShardingSphere
 
 ### 技术栈
 * Spring Boot

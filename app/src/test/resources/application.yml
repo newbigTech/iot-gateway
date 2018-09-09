@@ -1,0 +1,75 @@
+server:
+  port: ${random.int[10000,19999]}
+
+logging:
+  level:
+    com:
+      newbig:
+        codetemplate:
+          dal:
+            mapper: debug
+spring:
+  profiles: dev
+  endpoints:
+    shutdown:
+      enabled: true
+  application:
+    name: app
+  http:
+    servlet:
+      enabled: true
+      max-file-size: 30Mb
+      max-request-size: 100Mb
+    encoding:
+      enabled: true
+      charset: UTF-8
+  mvc:
+    favicon:
+      enabled: false
+  redis:
+    host: 127.0.0.1
+    port: 8379
+    password:
+  aop:
+    auto: true
+  output:
+    ansi:
+        enabled: ALWAYS
+  mybatis:
+      type-aliases-package: com.newbig.codetemplate.dal.model
+      mapper-locations: classpath:mapper/*.xml
+
+  mapper:
+      mappers:
+          - MyMapper
+      not-empty: true
+      identity: MYSQL
+
+  pagehelper:
+      helperDialect: mysql
+      reasonable: true
+      supportMethodsArguments: true
+      params: count=countSql
+
+  datasource:
+    name: datasource
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:5306/codetemplate?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: test
+    password: 123456
+    hikari:
+      connection-test-query: SELECT 1
+      maximum-pool-size: 20
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+
+---
+
+spring:
+  profiles:
+    active: dev
