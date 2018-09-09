@@ -1,4 +1,0 @@
-2018-09-02 13:00:26.598  INFO 32562 --- [main] c.n.codetemplate.app.AppApplication      : Starting AppApplication on xf with PID 32562 (/work/NewWork/java/codetemplate/app/target/classes started by xiaofan in /work/NewWork/java/codetemplate)
-2018-09-02 13:00:26.601  INFO 32562 --- [main] c.n.codetemplate.app.AppApplication      : The following profiles are active: dev
-2018-09-02 13:00:30.967  INFO 32562 --- [main] c.n.codetemplate.app.AppApplication      : Started AppApplication in 5.045 seconds (JVM running for 5.955)
-2018-09-02 13:00:30.970  INFO 32562 --- [main] c.n.codetemplate.app.AppApplication      : -----------------------------
