@@ -147,25 +147,6 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>io.shardingsphere</groupId>
-                <artifactId>sharding-jdbc-orchestration</artifactId>
-                <version>${io.shardingsphere.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.netty</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.grpc</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.curator</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>2.8.0</version>
@@ -179,8 +160,7 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.47</version>
-                <!--<version>6.0.6</version>-->
+                <version>6.0.6</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter -->
             <dependency>

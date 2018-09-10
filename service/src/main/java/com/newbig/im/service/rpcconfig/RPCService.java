@@ -33,7 +33,7 @@ public class RPCService {
     public static void publishService(){
         RegistryConfig registryConfig = new RegistryConfig()
                 .setProtocol("zookeeper")
-                .setAddress("192.168.10.103:2181");
+                .setAddress("127.0.0.1:2181");
         ServerConfig serverConfig = new ServerConfig()
                 .setProtocol("bolt") // 设置一个协议，默认bolt
                 .setPort(12200) // 设置一个端口，默认12200

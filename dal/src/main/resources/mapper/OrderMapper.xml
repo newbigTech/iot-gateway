@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newbig.im.dal.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.newbig.im.dal.model.Order">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="order_id" jdbcType="BIGINT" property="orderId"/>
+        <result column="user_id" jdbcType="INT" property="userId"/>
+        <result column="total_price" jdbcType="DECIMAL" property="totalPrice"/>
+        <result column="pay_price" jdbcType="DECIMAL" property="payPrice"/>
+        <result column="amount" jdbcType="BIGINT" property="amount"/>
+        <result column="buyer_name" jdbcType="VARCHAR" property="buyerName"/>
+        <result column="buyer_phone" jdbcType="VARCHAR" property="buyerPhone"/>
+        <result column="status" jdbcType="INT" property="status"/>
+    </resultMap>
+</mapper>

@@ -47,20 +47,20 @@ public class InsertAspect {
 
     private void domainHandle(Object object, String userId){
 
-        try {
-            if(object.getClass().getTypeName().startsWith(PACKAGE_NAME)) {
-                MethodUtils.invokeMethod(object, "setCreator", userId);
-                MethodUtils.invokeMethod(object, "setModifier", userId);
-                MethodUtils.invokeMethod(object, "setGmtCreate", new Date());
-                MethodUtils.invokeMethod(object, "setGmtModify", new Date());
-                try {
-                    MethodUtils.invokeMethod(object, "setIsDeleted", Boolean.FALSE);
-                } catch (Exception e) {
-                    MethodUtils.invokeMethod(object, "setIsDeleted", 0);
-                }
-            }
-        } catch (Exception e) {
-            log.error("common fields process error: {}", ExceptionUtils.getStackTrace(e));
-        }
+//        try {
+//            if(object.getClass().getTypeName().startsWith(PACKAGE_NAME)) {
+//                MethodUtils.invokeMethod(object, "setCreator", userId);
+//                MethodUtils.invokeMethod(object, "setModifier", userId);
+//                MethodUtils.invokeMethod(object, "setGmtCreate", new Date());
+//                MethodUtils.invokeMethod(object, "setGmtModify", new Date());
+//                try {
+//                    MethodUtils.invokeMethod(object, "setIsDeleted", Boolean.FALSE);
+//                } catch (Exception e) {
+//                    MethodUtils.invokeMethod(object, "setIsDeleted", 0);
+//                }
+//            }
+//        } catch (Exception e) {
+//            log.error("common fields process error: {}", ExceptionUtils.getStackTrace(e));
+//        }
     }
 }
