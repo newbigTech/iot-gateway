@@ -1,6 +1,8 @@
 package com.newbig.im.service;
 
 import com.google.common.collect.Lists;
+import com.newbig.im.dal.config.DS;
+import com.newbig.im.dal.config.DataSourceNames;
 import com.newbig.im.dal.mapper.OrderMapper;
 import com.newbig.im.dal.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ public class OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
+    @DS(value = DataSourceNames.SHARDING_DS)
     public void insertOrder(){
         for(int j=0;j<10;j++) {
             List<Order> lo = Lists.newArrayListWithExpectedSize(2);

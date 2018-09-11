@@ -22,7 +22,8 @@ public class GreetingController {
     public String greeting() {
         return greetingService.greet();
     }
-    @RequestMapping("/userList")
+    @GetMapping("/userList")
+    @NoAuth
     public List<SysUser> userList() {
         return greetingService.getSysUserList();
     }
