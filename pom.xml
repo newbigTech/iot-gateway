@@ -25,6 +25,7 @@
         <module>dal</module>
         <module>service</module>
         <module>model</module>
+        <module>core</module>
     </modules>
     <dependencyManagement>
         <dependencies>
@@ -195,6 +196,11 @@
                     <groupId>com.google.j2objc</groupId>
                 </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>3.6.1</version>
             </dependency>
             <dependency>
                 <groupId>joda-time</groupId>
