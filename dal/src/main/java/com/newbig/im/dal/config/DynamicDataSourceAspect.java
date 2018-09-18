@@ -29,7 +29,7 @@ public class DynamicDataSourceAspect {
                 DS annotation = method.getAnnotation(DS.class);
                 dataSource = annotation.value();
             }
-        } catch (Exception e) {
+        } catch (NoSuchMethodException e) {
             log.error(ExceptionUtils.getStackTrace(e));
         }
         DataSourceContextHolder.setDB(dataSource);

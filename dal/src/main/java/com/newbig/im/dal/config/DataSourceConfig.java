@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,8 +21,9 @@ import static com.newbig.im.dal.config.DataSourceNames.SHARDING_DS;
 @Configuration
 public class DataSourceConfig {
 
-    @Autowired
-    private DataSource dataSource;//ShardingSphere 的数据源
+    //ShardingSphere 的数据源
+    @Resource(name = "shardingDataSource")
+    private DataSource shardingDataSource;
 
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -41,7 +43,7 @@ public class DataSourceConfig {
         // 配置多数据源
         Map<Object, Object> dsMap = new HashMap();
         dsMap.put(IMCONFIG_DS, imDataSource());
-        dsMap.put(SHARDING_DS, dataSource);
+        dsMap.put(SHARDING_DS, shardingDataSource);
         dynamicDataSource.setTargetDataSources(dsMap);
         return dynamicDataSource;
     }
@@ -49,12 +51,12 @@ public class DataSourceConfig {
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
-        factoryBean.setDataSource(dynamicDataSource()); // 使用titan数据源, 连接titan库
+        factoryBean.setDataSource(dynamicDataSource());
         return factoryBean.getObject();
     }
     @Bean
     public SqlSessionTemplate sqlSessionTemplate() throws Exception {
-        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactory()); // 使用上面配置的Factory
+        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactory());
         return template;
     }
 }

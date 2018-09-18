@@ -70,22 +70,12 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-cache</artifactId>
-                <version>${springboot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-aop</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-undertow</artifactId>
-                <version>${springboot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-thymeleaf</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
             <dependency>
@@ -103,7 +93,7 @@
             <dependency>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>sofa-rpc-all</artifactId>
-                <version>5.4.5</version>
+                <version>5.5.0-SNAPSHOT</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.jboss.resteasy</groupId>
@@ -116,25 +106,48 @@
                 </exclusions>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-recipes</artifactId>
-                <version>4.0.1</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.netty</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.curator</groupId>-->
+                <!--<artifactId>curator-recipes</artifactId>-->
+                <!--<version>4.0.1</version>-->
+                <!--<exclusions>-->
+                    <!--<exclusion>-->
+                        <!--<groupId>io.netty</groupId>-->
+                        <!--<artifactId>*</artifactId>-->
+                    <!--</exclusion>-->
+                    <!--<exclusion>-->
+                        <!--<groupId>log4j</groupId>-->
+                        <!--<artifactId>log4j</artifactId>-->
+                    <!--</exclusion>-->
+                    <!--<exclusion>-->
+                        <!--<groupId>org.apache.zookeeper</groupId>-->
+                        <!--<artifactId>*</artifactId>-->
+                    <!--</exclusion>-->
+                <!--</exclusions>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.zookeeper</groupId>-->
+                <!--<artifactId>zookeeper</artifactId>-->
+                <!--<version>3.4.13</version>-->
+                <!--<exclusions>-->
+                    <!--&lt;!&ndash;<exclusion>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<groupId>log4j</groupId>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<artifactId>log4j</artifactId>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</exclusion>&ndash;&gt;-->
+                    <!--<exclusion>-->
+                        <!--<groupId>org.slf4j</groupId>-->
+                        <!--<artifactId>*</artifactId>-->
+                    <!--</exclusion>-->
+                    <!--<exclusion>-->
+                        <!--<groupId>io.netty</groupId>-->
+                        <!--<artifactId>*</artifactId>-->
+                    <!--</exclusion>-->
+                <!--</exclusions>-->
+            <!--</dependency>-->
             <!-- https://mvnrepository.com/artifact/io.shardingsphere/sharding-jdbc-spring-boot-starter -->
             <dependency>
                 <groupId>io.shardingsphere</groupId>
-                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <artifactId>sharding-jdbc</artifactId>
                 <version>${io.shardingsphere.version}</version>
                 <exclusions>
                     <exclusion>
@@ -146,6 +159,22 @@
                         <artifactId>gson</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.orbitz.consul</groupId>
+                <artifactId>consul-client</artifactId>
+                <version>LATEST</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jsr305</artifactId>
+                        <groupId>com.google.code.findbugs</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.ecwid.consul</groupId>
+                <artifactId>consul-api</artifactId>
+                <version>1.4.1</version>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
@@ -189,7 +218,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>23.0</version>
+                <version>25.1-jre</version>
                 <exclusions>
                 <exclusion>
                     <artifactId>*</artifactId>
@@ -339,10 +368,6 @@
                     <groupId>org.apache.tomcat</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -2,10 +2,10 @@ package com.newbig.im.core.client;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Message;
-import com.newbig.im.core.ReplyUtils;
-import com.newbig.im.core.proto.MessageBody;
-import com.newbig.im.core.proto.SERVER_CODE;
-import com.newbig.im.core.proto.SocketMessage;
+//import com.newbig.im.core.ReplyUtils;
+//import com.newbig.im.core.proto.MessageBody;
+//import com.newbig.im.core.proto.SERVER_CODE;
+//import com.newbig.im.core.proto.SocketMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -24,14 +24,14 @@ public class ClientHandler extends SimpleChannelInboundHandler<Message> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws IOException {
-        final SocketMessage msg = SocketMessage.newBuilder()
-                .setCode(SERVER_CODE.NOTIFY_CODE)
-
-                .setDomain(1)
-                .setOpcode(0)
-                .setBody(MessageBody.newBuilder().setMessage(ByteString.copyFrom("tttt", Charsets.UTF_8)))
-                .build();
-        ReplyUtils.reply(ctx, msg);
+//        final SocketMessage msg = SocketMessage.newBuilder()
+//                .setCode(SERVER_CODE.NOTIFY_CODE)
+//
+//                .setDomain(1)
+//                .setOpcode(0)
+//                .setBody(MessageBody.newBuilder().setMessage(ByteString.copyFrom("tttt", Charsets.UTF_8)))
+//                .build();
+//        ReplyUtils.reply(ctx, msg);
     }
 
     @Override
