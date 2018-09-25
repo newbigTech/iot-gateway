@@ -1,6 +1,8 @@
 package com.newbig.im.app;
 
-import com.newbig.im.service.rpcconfig.RPCService;
+import com.newbig.im.app.config.ConsulConfigInitializer;
+import com.newbig.im.core.consul.ConsulManager;
+import com.newbig.im.init.SpringContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +17,10 @@ import static com.newbig.im.common.constant.AppConstant.PACKAGE_NAME;
 public class AppApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AppApplication.class, args);
-        RPCService.initRPC();
+        SpringApplication sa = new SpringApplication(AppApplication.class);
+        sa.addInitializers(new ConsulConfigInitializer());
+        SpringContext.context = sa.run(args);
+        ConsulManager.watchSharding();
+
     }
 }

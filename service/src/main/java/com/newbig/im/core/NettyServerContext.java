@@ -2,6 +2,7 @@ package com.newbig.im.core;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.newbig.im.service.RedisService;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;
 import io.netty.channel.group.ChannelGroup;
@@ -36,10 +37,10 @@ public class NettyServerContext {
      * @return
      */
     public Long channelInactive(Channel channel) {
-        // 先把这个 channel 的用户都下线了
+        // 先把这个 channel 的用户下线
         Long userId = LOGIN_USERS.remove(channel.id());
         CHANNEL_GROUP.remove(channel);
-        return userId == null ? 0 : userId;
+        return userId;
     }
 
     /**
@@ -56,7 +57,7 @@ public class NettyServerContext {
      * @param channelId
      * @return
      */
-    Long getLoginUserId(ChannelId channelId) {
+    public Long getLoginUserId(ChannelId channelId) {
         if (CHANNEL_GROUP.find(channelId) == null) {
             return null;
         }
@@ -69,7 +70,7 @@ public class NettyServerContext {
      * @param userId
      * @return
      */
-    boolean isOnline(long userId) {
+    public boolean isOnline(Long userId) {
         ChannelId channelId = LOGIN_USERS.inverse().get(userId);
         if (channelId == null) {
             return false;
@@ -94,7 +95,7 @@ public class NettyServerContext {
      * @param userId
      * @return
      */
-    Channel getUserChannel(Long userId) {
+    public Channel getUserChannel(Long userId) {
         ChannelId channelId = LOGIN_USERS.inverse().get(userId);
         if (channelId == null) {
             // 用户未登录

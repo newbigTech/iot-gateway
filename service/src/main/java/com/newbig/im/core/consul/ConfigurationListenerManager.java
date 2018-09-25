@@ -10,12 +10,9 @@ import com.orbitz.consul.model.ConsulResponse;
 import com.orbitz.consul.model.kv.Value;
 import com.orbitz.consul.option.QueryOptions;
 import io.shardingsphere.core.event.ShardingEventBusInstance;
-import io.shardingsphere.core.rule.ShardingRule;
 
-import javax.sql.DataSource;
 import java.math.BigInteger;
 import java.util.Base64;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 

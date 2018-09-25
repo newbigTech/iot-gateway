@@ -25,7 +25,6 @@
         <module>dal</module>
         <module>service</module>
         <module>model</module>
-        <module>core</module>
     </modules>
     <dependencyManagement>
         <dependencies>
@@ -329,11 +328,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>service</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>im-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
