@@ -24,7 +24,7 @@ public class ChatRpcServiceImpl implements ChatRpcService {
             log.error("{}", future.cause());
         } else {
             // 取消
-            log.error("Client cancel receive message.");
+            log.error("NettyClient cancel receive message.");
         }
         return false;
 

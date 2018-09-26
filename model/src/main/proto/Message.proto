@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package="com.newbig.im.model.proto";
+option java_outer_classname = "Message";
+import "Command.proto";
+
+message MessageBase {
+	string clientId = 1;
+  	CommandType cmd = 2;
+    string data = 3;
+}
