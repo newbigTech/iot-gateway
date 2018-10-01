@@ -324,6 +324,28 @@ export const scheduleRouter = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
+export const customerRouter = [
+  {
+    path: '/customer',
+    component: Layout,
+    redirect: '/customer/index',
+    name: '客服',
+    icon: 'form',
+    meta: { roles: ['admin'] }, // you can set roles in root nav
+    children: [{
+      path: 'index',
+      component: _import('customer/index'),
+      name: '实时消息',
+      meta: {
+        title: 'query',
+        icon: 'form',
+        roles: ['admin'] // or you can only set roles in sub nav
+      }
+    }]
+  },
+  { path: '*', redirect: '/404', hidden: true }
+]
+
 export const systemRouter = [
   {
     path: '/system',
@@ -357,7 +379,8 @@ export const routeMap = {
   '9': financeRouter,
   '10': logisticRouter,
   '11': scheduleRouter,
-  '12': systemRouter
+  '12': systemRouter,
+  '13': customerRouter
 }
 export default new Router({
   // mode: 'history', // require service support
@@ -374,6 +397,7 @@ export default new Router({
     ...financeRouter,
     ...logisticRouter,
     ...scheduleRouter,
-    ...systemRouter
+    ...systemRouter,
+    ...customerRouter
   ]
 })

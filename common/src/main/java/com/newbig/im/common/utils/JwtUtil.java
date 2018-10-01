@@ -39,12 +39,12 @@ public class JwtUtil {
      * @return
      * @throws IOException
      */
-    public static String genToken(String mobile, String userUuid) {
+    public static String genToken(String mobile, Long userUuid) {
         String token = JWT.create()
                 .withIssuer(AppConstant.ISSUER)
                 //凌晨两点过期
                 .withExpiresAt(DateTimeUtils.getDateToMidNight())
-                .withClaim(AppConstant.USER_UUID, userUuid)
+                .withClaim(AppConstant.USER_ID, userUuid)
                 .withClaim(AppConstant.MOBILE, mobile)
                 .sign(algorithm);
         return token;
@@ -68,7 +68,7 @@ public class JwtUtil {
             //过期之后 需要重新登陆获取token
 //            if(jwt.getNotBefore().getTime()<System.currentTimeMillis()){
 //                //TODO 重定向到首页 暂时只打log
-//                log.error("userId:{},token expired",jwt.getClaims().get(AppConstant.USER_UUID).asString());
+//                log.error("userId:{},token expired",jwt.getClaims().get(AppConstant.USER_ID).asString());
 //                throw new TokenException("token已过期,请重新登陆");
 //            }
             return jwt;
@@ -79,8 +79,18 @@ public class JwtUtil {
 
     public static String getUserUuid(HttpServletRequest request) {
         DecodedJWT jwt = verifyToken(request);
-        return jwt.getClaims().get(AppConstant.USER_UUID).asString();
+        return jwt.getClaims().get(AppConstant.USER_ID).asString();
 
     }
 
+    public static Long getUserUuid(String token) {
+        try {
+            DecodedJWT jwt = verifier.verify(token);
+            return jwt.getClaims().get(AppConstant.USER_ID).asLong();
+        } catch (JWTVerificationException e) {
+            log.error("token validate failed {}",e.getMessage());
+        }
+        return null;
+
+    }
 }

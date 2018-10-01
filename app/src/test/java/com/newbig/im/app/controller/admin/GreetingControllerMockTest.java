@@ -41,7 +41,7 @@ public class GreetingControllerMockTest {
     @Test
     public void greetingShouldReturnMessageFromService() throws Exception {
         when(service.greet()).thenReturn("Hello Mock");
-        this.mockMvc.perform(get("/greeting").header(AppConstant.TOKEN_HEADER, JwtUtil.genToken("11","22"))).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/greeting").header(AppConstant.TOKEN_HEADER, JwtUtil.genToken("11",22L))).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello Mock")));
     }
 }

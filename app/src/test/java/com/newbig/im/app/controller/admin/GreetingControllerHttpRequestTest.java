@@ -49,7 +49,7 @@ public class GreetingControllerHttpRequestTest {
         baseUrl = "http://localhost:" + port;
 
         HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.set(TOKEN_HEADER, JwtUtil.genToken("12","12"));
+        requestHeaders.set(TOKEN_HEADER, JwtUtil.genToken("12",12L));
         requestEntity = new HttpEntity<String>(null, requestHeaders);
         MysqldConfig config = aMysqldConfig(v5_7_latest)
                 .withCharset(UTF8)

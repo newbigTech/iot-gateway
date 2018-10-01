@@ -10,7 +10,7 @@ public class SysUser {
     private Integer id;
 
     @Column(name = "user_id")
-    private String userId;
+    private Long userId;
 
     /**
      * 姓名
@@ -88,14 +88,14 @@ public class SysUser {
     /**
      * @return user_id
      */
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
     /**
      * @param userId
      */
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

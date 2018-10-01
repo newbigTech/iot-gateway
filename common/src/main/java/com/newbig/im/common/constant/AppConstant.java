@@ -7,6 +7,6 @@ public class AppConstant {
     public static final String PACKAGE_NAME = "com.newbig.im";
     public static final String SECRET = "apptoken";
     public static final String ISSUER = PACKAGE_NAME;
-    public static final String USER_UUID = "userUuid";
+    public static final String USER_ID = "userId";
     public static final String MOBILE = "mobile";
 }

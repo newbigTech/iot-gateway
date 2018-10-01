@@ -18,8 +18,9 @@ public class DateTimeUtils {
     public static Date getDateToMidNight() {
         //凌晨两点
         DateTime now = DateTime.now(timeZone);
-        DateTime tomorrowStart = now.plusDays(1)
+        DateTime tomorrowStart = now
                                     .withTimeAtStartOfDay()
+                                    .plusDays(1)
                                     .plusHours(2);
         return tomorrowStart.toDate();
     }

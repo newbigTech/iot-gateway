@@ -17,9 +17,9 @@ public class ChatTcpServer {
     private ServerBootstrap serverBootstrap;
 
     public void start() throws InterruptedException {
+        log.info("begin start chat tcp server, tcp port: {}", tcpPort);
         serverBootstrap
             .bind(tcpPort).sync().channel().closeFuture().sync().channel();
-        log.info("chat server start successfully, tcp port: {}", tcpPort);
     }
 
 

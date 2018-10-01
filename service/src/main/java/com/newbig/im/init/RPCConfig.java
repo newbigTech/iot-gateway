@@ -1,19 +1,27 @@
 package com.newbig.im.init;
 
+import com.alipay.sofa.rpc.client.ClientProxyInvoker;
+import com.alipay.sofa.rpc.client.Cluster;
+import com.alipay.sofa.rpc.client.ProviderGroup;
 import com.alipay.sofa.rpc.config.*;
+import com.alipay.sofa.rpc.proxy.ProxyFactory;
 import com.google.common.collect.Maps;
 import com.newbig.im.common.utils.StringUtil;
 import com.newbig.im.service.ChatRpcService;
 import com.newbig.im.service.impl.ChatRpcServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.Map;
 
 import static com.alipay.sofa.rpc.registry.zk.ZookeeperRegistry.PARAM_CREATE_EPHEMERAL;
 
+@Slf4j
 public class RPCConfig {
     //key: InterfaceId_ip value: ConsumerConfig
     private static final Map<String,ConsumerConfig> CONSUMER_CONFIG_MAP = Maps.newConcurrentMap();
     private static final String HelloServiceName= ChatRpcService.class.getName();
+    private static Cluster cluster;
 
     public static ChatRpcService getChatRpcService(Object host){
         ConsumerConfig consumerConfig = CONSUMER_CONFIG_MAP.get(HelloServiceName);
@@ -30,7 +38,12 @@ public class RPCConfig {
                 .setProtocol("bolt") // 指定协议
                 .setRegistry(registryConfig)
                 .setConnectTimeout(10 * 1000);
+        ClientProxyInvoker invoker = (ClientProxyInvoker) ProxyFactory.getInvoker(consumerConfig.refer(),
+                consumerConfig.getProxy());
+        cluster = invoker.getCluster();
         CONSUMER_CONFIG_MAP.put(HelloServiceName,consumerConfig );
+
+
     }
     public static void publishService(String consulAddress){
         RegistryConfig registryConfig = new RegistryConfig()
@@ -54,6 +67,12 @@ public class RPCConfig {
         String consulAddress = StringUtil.concat(host,":",port);
         publishService(consulAddress);
         registConsumer(consulAddress);
+    }
+    public static void getOnlineServer(){
+        List<ProviderGroup> groups = cluster.getAddressHolder().getProviderGroups();
+        for(ProviderGroup pg: groups){
+            log.info("{}::::{}",pg.getName(),pg.getProviderInfos());
+        }
     }
 
 }

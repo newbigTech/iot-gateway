@@ -6,17 +6,7 @@
     <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect"
              style="display: inline-block; margin-top: 0px; margin-left: 50px">
       <el-menu-item style="display: inline-block;" index="0">首页</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="1">商品中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="2">库存中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="3">商家中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="4">用户中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="5">运营中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="6">营销中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="7">内容中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="8">交易中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="9">财务中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="10">物流中心</el-menu-item>
-      <el-menu-item style="display: inline-block;" index="11">任务调度</el-menu-item>
+      <el-menu-item style="display: inline-block;" index="13">客服中心</el-menu-item>
       <el-menu-item style="display: inline-block;" index="12">系统设置</el-menu-item>
     </el-menu>
     <div class="right-menu">

@@ -2,6 +2,7 @@ package com.newbig.im.app.controller.admin;
 
 import com.newbig.im.common.annotation.NoAuth;
 import com.newbig.im.dal.model.SysUser;
+import com.newbig.im.init.RPCConfig;
 import com.newbig.im.service.GreetingService;
 import com.newbig.im.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,8 @@ public class GreetingController {
     @GetMapping("/testSj")
     @NoAuth
     public String testSj() {
-         orderService.insertOrder();
+//         orderService.insertOrder();
+        RPCConfig.getOnlineServer();
          return "ok";
     }
 }

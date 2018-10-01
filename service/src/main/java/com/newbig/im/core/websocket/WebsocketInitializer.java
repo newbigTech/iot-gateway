@@ -1,5 +1,6 @@
 package com.newbig.im.core.websocket;
 
+import com.newbig.im.core.tcp.handler.AuthServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -7,9 +8,16 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
+@Qualifier("websocketInitializer")
 public class WebsocketInitializer extends ChannelInitializer<SocketChannel> {
-
+    @Autowired
+    @Qualifier("textWebSocketFrameHandler")
+    private TextWebSocketFrameHandler textWebSocketFrameHandler;
     @Override
     protected void initChannel(SocketChannel ch) {
         ChannelPipeline pipeline = ch.pipeline();
@@ -24,7 +32,7 @@ public class WebsocketInitializer extends ChannelInitializer<SocketChannel> {
         //参数指的是contex_path
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
         //websocket定义了传递数据的6中frame类型
-        pipeline.addLast(new TextWebSocketFrameHandler());
+        pipeline.addLast(textWebSocketFrameHandler);
 
     }
 }
