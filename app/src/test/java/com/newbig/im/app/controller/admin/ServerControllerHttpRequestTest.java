@@ -33,7 +33,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { AppApplication.class, MockServletContext.class},
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class GreetingControllerHttpRequestTest {
+public class ServerControllerHttpRequestTest {
 
     @LocalServerPort
     private int port;

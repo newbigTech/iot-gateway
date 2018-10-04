@@ -1,10 +1,12 @@
 package com.newbig.im.init;
 
-import com.alipay.sofa.rpc.client.ClientProxyInvoker;
-import com.alipay.sofa.rpc.client.Cluster;
 import com.alipay.sofa.rpc.client.ProviderGroup;
 import com.alipay.sofa.rpc.config.*;
-import com.alipay.sofa.rpc.proxy.ProxyFactory;
+import com.alipay.sofa.rpc.registry.RegistryFactory;
+import com.alipay.sofa.rpc.registry.consul.ConsulRegistry;
+import com.alipay.sofa.rpc.server.Server;
+import com.alipay.sofa.rpc.server.ServerFactory;
+import com.alipay.sofa.rpc.server.bolt.BoltServer;
 import com.google.common.collect.Maps;
 import com.newbig.im.common.utils.StringUtil;
 import com.newbig.im.service.ChatRpcService;
@@ -14,15 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.Map;
 
-import static com.alipay.sofa.rpc.registry.zk.ZookeeperRegistry.PARAM_CREATE_EPHEMERAL;
-
 @Slf4j
 public class RPCConfig {
     //key: InterfaceId_ip value: ConsumerConfig
     private static final Map<String,ConsumerConfig> CONSUMER_CONFIG_MAP = Maps.newConcurrentMap();
     private static final String HelloServiceName= ChatRpcService.class.getName();
-    private static Cluster cluster;
-
+    private static RegistryConfig registryConfig;
     public static ChatRpcService getChatRpcService(Object host){
         ConsumerConfig consumerConfig = CONSUMER_CONFIG_MAP.get(HelloServiceName);
         consumerConfig.setDirectUrl(StringUtil.concat("bolt://",host,":12200"));
@@ -36,11 +35,10 @@ public class RPCConfig {
         ConsumerConfig<ChatRpcService> consumerConfig = new ConsumerConfig<ChatRpcService>()
                 .setInterfaceId(ChatRpcService.class.getName()) // 指定接口
                 .setProtocol("bolt") // 指定协议
+                .setUniqueId(ChatRpcService.class.getName())
+                .setApplication(new ApplicationConfig().setAppName("iot-gateway"))
                 .setRegistry(registryConfig)
                 .setConnectTimeout(10 * 1000);
-        ClientProxyInvoker invoker = (ClientProxyInvoker) ProxyFactory.getInvoker(consumerConfig.refer(),
-                consumerConfig.getProxy());
-        cluster = invoker.getCluster();
         CONSUMER_CONFIG_MAP.put(HelloServiceName,consumerConfig );
 
 
@@ -48,8 +46,7 @@ public class RPCConfig {
     public static void publishService(String consulAddress){
         RegistryConfig registryConfig = new RegistryConfig()
                 .setProtocol("consul")
-                .setAddress(consulAddress)
-                .setParameter(PARAM_CREATE_EPHEMERAL,"true");
+                .setAddress(consulAddress);
         ServerConfig serverConfig = new ServerConfig()
                 .setProtocol("bolt") // 设置一个协议，默认bolt
                 .setPort(12200) // 设置一个端口，默认12200
@@ -69,10 +66,7 @@ public class RPCConfig {
         registConsumer(consulAddress);
     }
     public static void getOnlineServer(){
-        List<ProviderGroup> groups = cluster.getAddressHolder().getProviderGroups();
-        for(ProviderGroup pg: groups){
-            log.info("{}::::{}",pg.getName(),pg.getProviderInfos());
-        }
+
     }
 
 }

@@ -4,8 +4,8 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 import com.google.common.net.HostAndPort;
 import com.newbig.im.common.utils.StringUtil;
-import com.newbig.im.core.consul.ConsulManager;
 import com.newbig.im.init.RPCConfig;
+import com.newbig.im.init.ServerContext;
 import com.orbitz.consul.Consul;
 import com.orbitz.consul.KeyValueClient;
 import lombok.extern.slf4j.Slf4j;
@@ -95,7 +95,7 @@ public class ConsulConfigInitializer implements ApplicationContextInitializer<Co
                 .withReadTimeoutMillis(2000)
                 .withWriteTimeoutMillis(2000)
                 .withHostAndPort(HostAndPort.fromParts(host, port)).build();
-        ConsulManager.consul = consul;
+        ServerContext.consul = consul;
         return consul.keyValueClient();
     }
 }

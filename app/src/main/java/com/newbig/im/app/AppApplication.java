@@ -1,8 +1,7 @@
 package com.newbig.im.app;
 
 import com.newbig.im.app.config.ConsulConfigInitializer;
-import com.newbig.im.core.consul.ConsulManager;
-import com.newbig.im.init.SpringBeanConfig;
+import com.newbig.im.init.ServerContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,8 +17,7 @@ public class AppApplication {
     public static void main(String[] args) {
         SpringApplication sa = new SpringApplication(AppApplication.class);
         sa.addInitializers(new ConsulConfigInitializer());
-        SpringBeanConfig.context = sa.run(args);
-        ConsulManager.watchSharding();
+        ServerContext.context = sa.run(args);
     }
 
 
